@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-dots .slick-active div{
+    border-right: 4px solid #222 !important;
+    color: #222 !important;
+}
+
+@media(max-width:640px){
+  ul{
+    margin-left: -30px !important;
+  }
+   .banPart{
+    padding: 2px 0 !important;
+    font-size: 12px !important;
+   }
+
+}
