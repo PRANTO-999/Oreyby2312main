@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Container from './Container'
 import { FaHeartbeat } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
 import { FaCartArrowDown } from "react-icons/fa";
-import axios from 'axios';
 import Slider from "react-slick";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { ApiData } from './ContextApi';
 
 
 function SampleNextArrow(props) {
@@ -29,6 +29,8 @@ function SamplePrevArrow(props) {
 
 const Newarrivals = () => {
 
+  let dum = useContext(ApiData)
+
     var settings = {
       dots: false,
       infinite: true,
@@ -40,25 +42,13 @@ const Newarrivals = () => {
     };
 
 
-  let [products, setProducts] = useState([])
-
-  let superData = () =>{
-    axios.get("https://dummyjson.com/products").then((response)=>{
-      setProducts(response.data.products);
-      
-    })     
-  }
-  useEffect(()=>{    
-    superData()
-  },[])
-
   
-  return (
+  return ( 
     <Container>
         <h3 className='text-[40px] text-[#222] font-pops font-bold'>New Arrivals</h3>
         <Slider {...settings}>
-        {products.map((item)=>(
-                <div className="!w-[96%] my-3">
+        {dum.map((item,i)=>(
+                <div key={i} className="!w-[96%] my-3">
                 <div className="relative group overflow-hidden cursor-pointer">
                 <picture>
                     <img src={item.thumbnail} className='w-full h-[300px]' alt=""/>

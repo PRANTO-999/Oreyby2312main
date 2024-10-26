@@ -7,10 +7,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { useRef } from 'react';
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from 'react-redux';
 
 
 
 const Box = () => {
+  let data = useSelector((state)=>state.product.cartItem)
   let [info, setInfo] = useState(false)
   let [handleshow, setHandleshow] = useState(false)
   let [getshow, setGetshow] = useState(false)
@@ -82,15 +84,20 @@ const Box = () => {
                 }
               </div>
               <div className="relative ">
-                <div className="" ref={disForm}>
-                  <FaShoppingCart />
+                <div className="relative" ref={disForm} >
+                  {data.length ? <div className="absolute h-[20px] w-[20px] bg-[red] left-[-20px] top-[-20px] text-center leading-[20px]">{data.length}</div> : ""}
+                 <div className="">
+                 <FaShoppingCart />
+                 </div>
+                
                 </div>
+               
                 {getshow &&
-                  <div className="w-[360px] h-[241px] absolute top-[50px] left-[-350px] z-40">
+                    <div className="w-[360px] h-[241px] absolute top-[50px] left-[-350px] z-40">
                     <div className="flex items-center justify-between bg-[#F5F5F3] py-4 px-4 mb-[10px]">
                       <div className="w-[80px] h-[80px] bg-[#D8D8D8] pl-2"></div>
                       <div className="">
-                        <h3>Black Smart Watch</h3>
+                        <h3>Black Smart Watch</h3>       
                         <h4>$44.00</h4>
                       </div>
                       <div className="pr-2">
@@ -109,8 +116,8 @@ const Box = () => {
                       </div>
                     </div>
                   </div>
-                }
-              </div>
+                   }
+              </div>         
             </div>
           </div>
         </div>

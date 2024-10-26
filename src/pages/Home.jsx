@@ -1,5 +1,4 @@
 import React from 'react'
-import Box from '../components/Box'
 import Banner from '../components/Banner'
 import Sale from '../components/Sale'
 import Newarrivals from '../components/Newarrivals'
@@ -10,12 +9,11 @@ import Clock from '../components/Clock'
 const Home = () => {
   return (
     <>
-    <Box/>
-    <Banner/>
-    <Sale/>
-    <Newarrivals/>
-    <Bestseller/>
-    <Clock/>
+      <Banner />
+      <Sale />
+      <Newarrivals />
+      <Bestseller />
+      <Clock />
     </>
   )
 }
