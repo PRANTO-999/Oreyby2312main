@@ -17,11 +17,8 @@ const {totalPrice, totalQuantity} = data.reduce((acc, item)=>{
     acc.totalQuantity += item.qun
     return acc
 
-
 },{totalPrice:0, totalQuantity:0})
 
-console.log(totalPrice);
-console.log(totalQuantity);
 
 
   return (

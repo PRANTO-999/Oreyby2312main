@@ -11,7 +11,7 @@ const ContextApi = ({children}) => {
       axios.get("https://dummyjson.com/products").then((response) => {
         setInfo(response.data.products);        
       })
-    }
+    } 
   
     useEffect(()=>{
       dataItem()

@@ -25,7 +25,7 @@ export const productSlice = createSlice({
     productDecrement:(state, action)=>{
       if(state.cartItem[action.payload].qun > 1){
         state.cartItem[action.payload].qun -= 1
-        localStorage.setItem("cart", JSON.stringify(state.cartItem))
+        localStorage.setItem("cart", JSON.stringify(state.cartItem)) 
       }
 
     },

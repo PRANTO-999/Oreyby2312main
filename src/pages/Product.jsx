@@ -15,11 +15,18 @@ const Product = () => {
     let [pagestart, setPageStart] = useState(1)
     let [category, setCategory] = useState([])
     let [perpage, setPerPage] = useState(6)
+    let [catefillter, setCateFillter] = useState([])
+    let [multi, setMulti] = useState("")
 
     useEffect(()=>{
-        setCategory([...new Set(sum.map((item)=>item.category))])
+        setCategory([...new Set(sum.map((item)=>item.category))]) 
     },[sum])
-   
+    
+  let handleItem = (citem) =>{
+    let categoryFillter = sum.filter((item)=>item.category == citem)
+    setCateFillter(categoryFillter)
+  }
+
     
 
     let lastPage = pagestart * perpage
@@ -30,7 +37,7 @@ const Product = () => {
 
     let pageNumber = []
 
-    for(let i = 0; i < Math.ceil(sum.length / perpage); i++ ){
+    for(let i = 0; i < Math.ceil(catefillter.length > 0 ? catefillter : sum.length / perpage); i++ ){
       pageNumber.push(i)
     }
     let paginate = (pageNumber) =>{
@@ -38,9 +45,9 @@ const Product = () => {
     
  }   
  let next = () =>{
-    if(pagestart < pageNumber.length){
-      setPageStart((state)=> state+1)
-    }
+  if(pagestart < pageNumber.length){
+    setPageStart((state)=>state+1)
+  }
 
  } 
  let prve = () =>{
@@ -48,7 +55,12 @@ const Product = () => {
         setPageStart((state)=> state-1)
     }
  }
+ let handleList = () =>{
+    setMulti("activeMulti")
+ }
    
+ console.log(multi);
+ 
     return (
         <Container>
             <h2 className='text-[49px] text-[#222] font-pops font-bold'>Products</h2>          
@@ -63,9 +75,8 @@ const Product = () => {
                     {showcate &&
                      <ul>
                         {category.map((item)=>(
-                           <li>{item}</li>
+                           <li onClick={()=>handleItem(item)}>{item}</li>
                         ))}
-                    
                      </ul>
                     }
                     </div>
@@ -97,11 +108,11 @@ const Product = () => {
 
                 <div className="w-[80%]">
                     <div className="flex gap-x-5 pb-[30px]">
-                        <a className='text-[25px] text-[#222] font-pops font-bold border-2 border-[#222] h-[40px] w-[40px] leading-[33px] text-center hover:bg-[green] hover:text-[#fff]' href="#"><IoGridSharp className='inline-block' /></a>
-                        <a className='text-[25px] text-[#222] font-pops font-bold border-2 border-[#222] h-[40px] w-[40px] leading-[33px] text-center hover:bg-[green] hover:text-[#fff]' href="#"><AiOutlineBars className='inline-block' /></a>
+                        <a onClick={()=>setMulti("")} className='text-[25px] text-[#222] font-pops font-bold border-2 border-[#222] h-[40px] w-[40px] leading-[33px] text-center hover:bg-[green] hover:text-[#fff]' href="#"><IoGridSharp className='inline-block' /></a>
+                        <a onClick={handleList} className='text-[25px] text-[#222] font-pops font-bold border-2 border-[#222] h-[40px] w-[40px] leading-[33px] text-center hover:bg-[green] hover:text-[#fff]' href="#"><AiOutlineBars className='inline-block' /></a>
                     </div>
                     <div className="text-end">
-                        <Partex allPage={allPage} />
+                        <Partex allPage={allPage} catefillter={catefillter} multi={multi} />
                         <div className="">
                             <PaginationArea pageNumber={pageNumber} paginate={paginate} pagestart={pagestart} next={next} prve={prve}/>
                         </div>
